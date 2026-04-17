@@ -2,31 +2,492 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Janko Tech Ventures LLC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Janko Tech Ventures LLC</title>
+  <meta
+    name="description"
+    content="Janko Tech Ventures LLC is a software company focused on building mobile applications and digital products, including Tap Party."
+  />
   <style>
+    :root {
+      --bg: #0b1020;
+      --bg-alt: #121933;
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f5f7fb;
+      --muted: #b9c2d0;
+      --accent: #8b5cf6;
+      --accent-2: #06b6d4;
+      --max-width: 1100px;
+      --radius: 20px;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #0b0f1a;
-      color: white;
-      text-align: center;
-      padding: 50px;
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 246, 0.20), transparent 30%),
+        radial-gradient(circle at top right, rgba(6, 182, 212, 0.16), transparent 28%),
+        linear-gradient(180deg, #09101f 0%, #0b1020 100%);
+      line-height: 1.6;
     }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(9, 16, 31, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--accent-2);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 92px 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 48px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(139, 92, 246, 0.14);
+      color: #d6c4ff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
+      margin: 0 0 18px;
+      font-size: clamp(2.3rem, 5vw, 4.3rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
     }
-    p {
-      max-width: 600px;
-      margin: 10px auto;
-      color: #ccc;
+
+    .hero-copy p {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 720px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+    }
+
+    .btn-secondary {
+      border-color: var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+    }
+
+    .hero-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 14px;
+      font-size: 1.2rem;
+    }
+
+    .hero-card p {
+      margin: 0 0 20px;
+      color: var(--muted);
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .mini-item {
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mini-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.96rem;
+    }
+
+    .section {
+      padding: 20px 0 28px;
+    }
+
+    .section-header {
+      margin-bottom: 20px;
+    }
+
+    .section-header h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .section-card {
+      padding: 28px;
+    }
+
+    .section-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+    }
+
+    .section-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .product-card {
+      display: grid;
+      gap: 16px;
+    }
+
+    .product-tag {
+      display: inline-block;
+      width: fit-content;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(6, 182, 212, 0.12);
+      color: #b5f1fb;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .product-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .contact-item {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    .site-footer {
+      padding: 42px 0 56px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        padding: 32px 24px;
+      }
+
+      .hero-card,
+      .section-card {
+        padding: 24px;
+      }
+
+      .nav {
+        min-height: auto;
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Janko Tech Ventures LLC</h1>
-  <p>Innovative software solutions focused on mobile applications and digital products.</p>
-  <p>Our products include Tap Party, a social party game app. </p>
-  <p>Contact: bjankowski@jankotechventures.com</p>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top">Janko Tech <span>Ventures LLC</span></a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Software Company</div>
+          <h1>Building modern mobile apps and digital products.</h1>
+          <p>
+            Janko Tech Ventures LLC is focused on developing innovative software
+            experiences, consumer-facing mobile applications, and scalable digital products.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#products">View Products</a>
+            <a class="btn btn-secondary" href="#contact">Get in Touch</a>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div>
+            <h2>Company Focus</h2>
+            <p>
+              We build software with an emphasis on usability, performance, and practical execution.
+            </p>
+          </div>
+
+          <div class="mini-list">
+            <div class="mini-item">
+              <strong>Mobile Applications</strong>
+              Consumer and product-led app experiences.
+            </div>
+            <div class="mini-item">
+              <strong>Digital Products</strong>
+              Lightweight, scalable, and easy-to-adopt solutions.
+            </div>
+            <div class="mini-item">
+              <strong>Product Innovation</strong>
+              Software concepts built with long-term extensibility in mind.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>About</h2>
+          <p>
+            Janko Tech Ventures LLC is a software company dedicated to building mobile applications
+            and digital products for modern users. Our approach emphasizes focused execution,
+            clean product experiences, and practical long-term growth.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="section-card">
+            <h3>What We Build</h3>
+            <p>
+              We create consumer-facing applications and related software experiences with a focus
+              on product quality, usability, and scalable digital distribution.
+            </p>
+          </div>
+
+          <div class="section-card">
+            <h3>How We Operate</h3>
+            <p>
+              We prioritize lean development, controlled iteration, and strong product foundations
+              that support future expansion across multiple applications and categories.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Products</h2>
+          <p>
+            Our initial product portfolio includes Tap Party, with additional digital products planned in the future.
+          </p>
+        </div>
+
+        <div class="section-card product-card">
+          <span class="product-tag">Featured Product</span>
+          <h3>Tap Party</h3>
+          <p>
+            Tap Party is a social party game app designed to create fun, interactive group experiences through
+            challenges, mini-games, and premium gameplay features.
+          </p>
+
+          <div class="product-links">
+            <a class="btn btn-secondary" href="https://tap-party.com" target="_blank" rel="noreferrer">Visit Tap Party</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Contact</h2>
+          <p>
+            For general business inquiries, product questions, or support-related contact, reach out using the information below.
+          </p>
+        </div>
+
+        <div class="section-card">
+          <div class="contact-list">
+            <div class="contact-item">
+              <strong>Company</strong>
+              Janko Tech Ventures LLC
+            </div>
+            <div class="contact-item">
+              <strong>Email</strong>
+              <a href="mailto:bjankowski@jankotechventures.com">bjankowski@jankotechventures.com</a>
+            </div>
+            <div class="contact-item">
+              <strong>Product Support</strong>
+              <a href="mailto:support@tap-party.com">support@tap-party.com</a>
+            </div>
+            <div class="contact-item">
+              <strong>Website</strong>
+              <a href="https://jankotechventures.com">jankotechventures.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© 2026 Janko Tech Ventures LLC. All rights reserved.</div>
+      <div>Software · Mobile Apps · Digital Products</div>
+    </div>
+  </footer>
 </body>
 </html>
